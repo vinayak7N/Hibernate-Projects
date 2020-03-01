@@ -7,6 +7,7 @@ import org.hibernate.Session;
 
 import com.hibernate.model.Address;
 import com.hibernate.model.ContactNumbers;
+import com.hibernate.model.Meeting;
 import com.hibernate.model.Skills;
 import com.hibernate.model.UserDetails;
 import com.hibernate.model.Vehicle;
@@ -80,8 +81,24 @@ public class ClientClass {
 		userDetails.setVehicle(vehicle);
 		skill1.setUserDetails(userDetails);
 		skill2.setUserDetails(userDetails);
+		
+		Meeting quaterlyMeeting=new Meeting();
+		quaterlyMeeting.setMeetingDate(new Date());
+		quaterlyMeeting.setSubject("Quaterly Meeting");
+		Meeting weeklyMeeting=new Meeting();
+		weeklyMeeting.setMeetingDate(new Date());
+		weeklyMeeting.setSubject("Weekly Meeting");
+		Meeting dailyMeeting=new Meeting();
+		dailyMeeting.setMeetingDate(new Date());
+		dailyMeeting.setSubject("Daily Meeting");
+		userDetails.getMeetings().add(quaterlyMeeting);
+		userDetails.getMeetings().add(dailyMeeting);
+		quaterlyMeeting.getUserList().add(userDetails);
+		dailyMeeting.getUserList().add(userDetails);
 		session.beginTransaction();
 		session.save(userDetails);
+		session.save(quaterlyMeeting);
+		session.save(dailyMeeting);
 		//session.save(skill1);
 		//session.save(skill2);
 		// session.save(vehicle);
@@ -119,7 +136,10 @@ public class ClientClass {
 		userDetails2.getSkillSet().add(skill4);
 		skill3.setUserDetails(userDetails2);
 		skill4.setUserDetails(userDetails2);
+		userDetails2.getMeetings().add(weeklyMeeting);
+		weeklyMeeting.getUserList().add(userDetails2);
 		session.save(userDetails2);
+		session.save(weeklyMeeting);
 		//session.save(skill3);
 		//session.save(skill4);
 		// session.save(vehicle2);

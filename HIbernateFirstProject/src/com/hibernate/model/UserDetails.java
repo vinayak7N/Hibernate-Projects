@@ -19,6 +19,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -61,11 +62,23 @@ public class UserDetails {
 	@JoinColumn(name = "VEHICLE_ID")
 	private Vehicle vehicle;
 
-	//@OneToMany(cascade=CascadeType.ALL)
-	//@JoinTable(name="USER_SKILLS", joinColumns=@JoinColumn(name="USER_ID"),
-	//inverseJoinColumns = @JoinColumn(name="SKILLS_ID"))
-	@OneToMany(mappedBy="userDetails",cascade = CascadeType.ALL)
+	// @OneToMany(cascade=CascadeType.ALL)
+	// @JoinTable(name="USER_SKILLS", joinColumns=@JoinColumn(name="USER_ID"),
+	// inverseJoinColumns = @JoinColumn(name="SKILLS_ID"))
+	@OneToMany(mappedBy = "userDetails", cascade = CascadeType.ALL)
 	private Set<Skills> skillSet = new HashSet<>(0);
+
+	@ManyToMany
+	@JoinTable(name = "USER_MEETINGS", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "MEETING_ID"))
+	private Set<Meeting> meetings = new HashSet<>(0);
+
+	public Set<Meeting> getMeetings() {
+		return meetings;
+	}
+
+	public void setMeetings(Set<Meeting> meetings) {
+		this.meetings = meetings;
+	}
 
 	public Set<Skills> getSkillSet() {
 		return skillSet;
