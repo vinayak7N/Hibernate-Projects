@@ -7,8 +7,10 @@ import org.hibernate.Session;
 
 import com.hibernate.model.Address;
 import com.hibernate.model.ContactNumbers;
+import com.hibernate.model.FourWheelerVehicle;
 import com.hibernate.model.Meeting;
 import com.hibernate.model.Skills;
+import com.hibernate.model.TwoWheelerVehicle;
 import com.hibernate.model.UserDetails;
 import com.hibernate.model.Vehicle;
 import com.hibernate.utils.HibernateUtils;
@@ -72,6 +74,12 @@ public class ClientClass {
 		vehicle.setVehicleName("Swift Desire Car");
 		vehicle.setVehicleNo("DL5632X3");
 		vehicle.setUserDetails(userDetails);
+		TwoWheelerVehicle bike=new TwoWheelerVehicle();
+		bike.setVehicleName("Bike");
+		bike.setSteeringHandle("Bike Steering");
+		bike.setVehicleNo("UP0000");
+		bike.setUserDetails(userDetails);
+		userDetails.setVehicle(bike);
 		Skills skill1=new Skills();
 		skill1.setSkillName("JAVA");
 		Skills skill2=new Skills();
@@ -99,6 +107,7 @@ public class ClientClass {
 		session.save(userDetails);
 		session.save(quaterlyMeeting);
 		session.save(dailyMeeting);
+		session.save(bike);
 		//session.save(skill1);
 		//session.save(skill2);
 		// session.save(vehicle);
@@ -128,6 +137,12 @@ public class ClientClass {
 		vehicle2.setVehicleNo("DL0007X");
 		userDetails2.setVehicle(vehicle2);
 		vehicle2.setUserDetails(userDetails2);
+		FourWheelerVehicle car =new FourWheelerVehicle();
+		car.setSteeringWheel("Steering Wheels");
+		car.setUserDetails(userDetails2);
+		car.setVehicleName("Car");
+		car.setVehicleNo("DL00000");
+		
 		Skills skill3=new Skills();
 		skill3.setSkillName("PYTHON");
 		Skills skill4=new Skills();
@@ -140,6 +155,7 @@ public class ClientClass {
 		weeklyMeeting.getUserList().add(userDetails2);
 		session.save(userDetails2);
 		session.save(weeklyMeeting);
+		session.save(car);
 		//session.save(skill3);
 		//session.save(skill4);
 		// session.save(vehicle2);

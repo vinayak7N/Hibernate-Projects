@@ -8,8 +8,10 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import com.hibernate.model.FourWheelerVehicle;
 import com.hibernate.model.Meeting;
 import com.hibernate.model.Skills;
+import com.hibernate.model.TwoWheelerVehicle;
 import com.hibernate.model.UserDetails;
 import com.hibernate.model.Vehicle;
 
@@ -33,7 +35,7 @@ public class HibernateUtils {
 		properties.put(Environment.HBM2DDL_AUTO, "create");
 		config.setProperties(properties);
 		config.addAnnotatedClass(UserDetails.class).addAnnotatedClass(Vehicle.class).addAnnotatedClass(Skills.class)
-		.addAnnotatedClass(Meeting.class);
+		.addAnnotatedClass(Meeting.class).addAnnotatedClass(TwoWheelerVehicle.class).addAnnotatedClass(FourWheelerVehicle.class);
 		// registryBuilder.applySettings(dbSettings);
 		// standardServiceRegistry = registryBuilder.build();
 		// MetadataSources sources = new MetadataSources(standardServiceRegistry);
