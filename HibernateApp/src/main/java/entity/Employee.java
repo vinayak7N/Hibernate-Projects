@@ -7,6 +7,17 @@ public class Employee {
     private int age;
     private int salary;
 
+    public Employee(){
+        System.out.println("Employee default constructor called....");
+    }
+
+    public Employee(int id, String name, int age, int salary) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+    }
+
     public int getId() {
         return id;
     }

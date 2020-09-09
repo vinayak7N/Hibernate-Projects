@@ -17,12 +17,14 @@ public class MainClass {
 
         EmployeeService employeeService = new EmployeeService(sessionFactory);
 
-        Employee employee1 = new Employee();
+        /*Employee employee1 = new Employee();
         employee1.setId(102);
         employee1.setName("Kelly");
         employee1.setAge(23);
         employee1.setSalary(48000);
-        int id = employeeService.createEmployee(employee1);
+        int id = employeeService.createEmployee(employee1);*/
+        Employee employee2 = new Employee(104,"Mary",26,3465);
+        employeeService.createEmployee(employee2);
         employeeService.getEmployees().forEach(System.out::println);
         sessionFactory.close();
     }
